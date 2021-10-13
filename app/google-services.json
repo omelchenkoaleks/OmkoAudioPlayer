@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "724214641664",
+    "project_id": "omko-audio-player",
+    "storage_bucket": "omko-audio-player.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:724214641664:android:5c3cf8d177003333d594e5",
+        "android_client_info": {
+          "package_name": "com.omelchenkoaleks.omkoaudioplayer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "724214641664-8dfo5nsglm4q5gskta9e7phn1201d9kr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4otBvp6blkAFyPe4mf7aTlQgfU5zU1-E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "724214641664-8dfo5nsglm4q5gskta9e7phn1201d9kr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
