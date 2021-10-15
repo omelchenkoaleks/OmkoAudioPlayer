@@ -10,7 +10,6 @@ import com.google.android.exoplayer2.source.ConcatenatingMediaSource
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.omelchenkoaleks.omkoaudioplayer.data.remote.MusicDatabase
-import com.omelchenkoaleks.omkoaudioplayer.exoplayer.State.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -22,7 +21,7 @@ class FirebaseMusicSource @Inject constructor(
     var songs = emptyList<MediaMetadataCompat>()
 
     suspend fun fetchMediaData() = withContext(Dispatchers.IO) {
-        state = STATE_INITIALIZING
+        state = State.STATE_INITIALIZING
         val allSongs = musicDatabase.getAllSongs()
         songs = allSongs.map { song ->
             MediaMetadataCompat.Builder()
@@ -37,7 +36,7 @@ class FirebaseMusicSource @Inject constructor(
                 .putString(METADATA_KEY_DISPLAY_DESCRIPTION, song.subtitle)
                 .build()
         }
-        state = STATE_INITIALIZED
+        state = State.STATE_INITIALIZED
     }
 
     fun asMediaSource(dataSourceFactory: DefaultDataSourceFactory): ConcatenatingMediaSource {
@@ -63,13 +62,13 @@ class FirebaseMusicSource @Inject constructor(
 
     private val onReadyListeners = mutableListOf<(Boolean) -> Unit>()
 
-    private var state: State = STATE_CREATED
+    private var state: State = State.STATE_CREATED
         set(value) {
-            if (value == STATE_INITIALIZED || value == STATE_ERROR) {
+            if (value == State.STATE_INITIALIZED || value == State.STATE_ERROR) {
                 synchronized(onReadyListeners) {
                     field = value
                     onReadyListeners.forEach { listener ->
-                        listener(state == STATE_INITIALIZED)
+                        listener(state == State.STATE_INITIALIZED)
                     }
                 }
             } else {
@@ -78,11 +77,11 @@ class FirebaseMusicSource @Inject constructor(
         }
 
     fun whenReady(action: (Boolean) -> Unit): Boolean {
-        if (state == STATE_CREATED || state == STATE_INITIALIZING) {
+        if (state == State.STATE_CREATED || state == State.STATE_INITIALIZING) {
             onReadyListeners += action
             return false
         } else {
-            action(state == STATE_INITIALIZED)
+            action(state == State.STATE_INITIALIZED)
             return true
         }
     }

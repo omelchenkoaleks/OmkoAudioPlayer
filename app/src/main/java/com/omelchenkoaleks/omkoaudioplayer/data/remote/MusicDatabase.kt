@@ -4,7 +4,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.omelchenkoaleks.omkoaudioplayer.data.entities.Song
 import com.omelchenkoaleks.omkoaudioplayer.other.Constants.SONG_COLLECTION
 import kotlinx.coroutines.tasks.await
-import java.lang.Exception
 
 class MusicDatabase {
 
