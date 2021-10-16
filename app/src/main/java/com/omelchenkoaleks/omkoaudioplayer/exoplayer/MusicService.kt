@@ -17,6 +17,7 @@ import com.omelchenkoaleks.omkoaudioplayer.exoplayer.callbacks.MusicPlaybackPrep
 import com.omelchenkoaleks.omkoaudioplayer.exoplayer.callbacks.MusicPlayerEventListener
 import com.omelchenkoaleks.omkoaudioplayer.exoplayer.callbacks.MusicPlayerNotificationListener
 import com.omelchenkoaleks.omkoaudioplayer.other.Constants.MEDIA_ROOT_ID
+import com.omelchenkoaleks.omkoaudioplayer.other.Constants.NETWORK_ERROR
 import kotlinx.coroutines.*
 import javax.inject.Inject
 
@@ -159,6 +160,7 @@ class MusicService : MediaBrowserServiceCompat() {
                             isPlayerInitialized = true
                         }
                     } else {
+                        mediaSession.sendSessionEvent(NETWORK_ERROR, null)
                         result.sendResult(null)
                     }
                 }
